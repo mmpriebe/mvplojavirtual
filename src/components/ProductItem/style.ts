@@ -13,13 +13,13 @@ export const Card = styled.div<{ img: string }>`
   justify-content: end;
   height: 450px;
   width: 250px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 25px;
-  background-color: #151515;
   padding-bottom: 10px;
   background-image: url(${(props: { img: string }) => props.img});
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -41,6 +41,7 @@ export const NameProduct = styled.p`
   font-family: 'gilroy-bold', sans-serif;
   font-size: 15px;
   margin-top: 10px;
+  text-decoration: none;
 `;
 
 export const PriceProductContainer = styled.div`
@@ -48,6 +49,7 @@ export const PriceProductContainer = styled.div`
   gap: 10px;
   align-items: center;
   margin-top: 5px;
+  text-decoration: none;
 `;
 
 export const PriceProduct = styled.p<{ fake?: boolean }>`

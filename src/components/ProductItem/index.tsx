@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../Button/style";
 import { Card, Container, ContainerButton, NameProduct, PriceProduct, PriceProductContainer } from "./style";
 
@@ -7,7 +8,7 @@ export default function ProductItem(props: any) {
   const principalSize = props.product.tamanhos.find((size: any) => size.principal === true);
 
   return (
-    <>
+    <Link to={`/product/${props.product.id}`}>
     <Container>
       <Card img={props.product.fotos}>
         <ContainerButton>
@@ -20,6 +21,6 @@ export default function ProductItem(props: any) {
         <PriceProduct>{principalSize.preco_por.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'})}</PriceProduct>
       </PriceProductContainer>
     </Container>
-    </>
+    </Link>
   )
 }

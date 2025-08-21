@@ -8,6 +8,7 @@ import {
 import { createRoot } from 'react-dom/client'
 import Home from './pages/Home';
 import PageNotFound from './pages/NotFoundPage';
+import Product from './pages/Product';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: '*',
     element: ( <PageNotFound /> ),
+  },
+  {
+    path: '/product/:id',
+    element: (<Product />)
   }
 ])
 

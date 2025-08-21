@@ -35,5 +35,5 @@ export const MenuItem = styled.div`
   transition: all ease 0.3s;
   height: 100%;
   font-family: 'gilroy-bold', sans-serif;
-  color: #43bc2f;
+  color: white;
 `;
