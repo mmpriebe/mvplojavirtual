@@ -1,6 +1,23 @@
 import axios from "axios";
 
-const products =  [
+type Cart = {
+  id: string;
+  quantidade: number;
+  tamanho: string;
+}
+
+type Shipping = {
+  pac: {
+    valor: number,
+    prazo: number
+  },
+  sedex: {
+    valor: number,
+    prazo: number
+  }
+}
+
+let products =  [
       {
         id: '5d3fc787-dc5b-4a13-81ca-e64e434038f7',
         nome: "Camiseta - PHP",
@@ -51,10 +68,84 @@ const products =  [
       }
     ]
 
+const cartProducts: Cart[] = [];
+
 export const getProductsAxios = async () => {
   return products
   }
 
 export const getProduct = async (id: string) => {
   return products.find((product: any) => product.id === id)
+}
+
+export const addProductCart = async (cart: Cart): Promise<{data: Cart[]}> => {
+  cartProducts.push(cart)
+  return {data: cartProducts}
+}
+
+export const calculateShipping = async (cep: string): Promise<{data: Shipping}> => {
+  return {
+    data: {
+      pac: {
+        valor: 15.90,
+        prazo: 20
+      },
+      sedex: {
+        valor: 85.50,
+        prazo: 5
+      }
+    }
+  }
+}
+
+
+export const getCart = async () => {
+ return {
+    data: {
+      itens: 
+      [
+        {
+          id: '5d3fc787-dc5b-4a13-81ca-e64e434038f7',
+          nome: "Camiseta - PHP",
+          quantidade: 20,
+          preco: 79,
+          total: 2500,
+          fotos: "https://rsv-ink-images.ink.rsvcloud.com/images/product_v2/main_image/8559037e09489ccb44254d8aba397e8f.webp",
+          tamanho: 'P'
+        },
+        {
+          id: 'f0741fc2-d1dc-44c8-9b47-4fcddeed92e4',
+          nome: "Camiseta - JavaScript",
+          quantidade: 15,
+          preco: 89,
+          total: 2000,
+          descricao: "Camiseta oficial do NodeJS, um novo framework a cada 5 minutos",
+          fotos: "https://rsv-ink-images.ink.rsvcloud.com/images/product_v2/main_image/e2fd1bcb1ad42b887b5933ac973c8378.webp",
+          tamanho: 'G'
+        }
+    ],
+    frete: {
+      pac: {
+        valor: 15.90,
+        prazo: 20,
+        escolhido: true
+      },
+      sedex: {
+        valor: 50.00,
+        prazo: 5,
+        escolhido: false
+      }
+    },
+    total: 4500,
+    total_frete: 4515.90
+    } 
+  }
+}
+
+export const createPurchase = async () => {
+  return {
+    data: {
+      link: 'https://sandbox.asaas.com'
+    }
+  }
 }

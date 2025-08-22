@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Menu from "../../components/Menu";
-import { CardProduct, ContainerProduct, DivInfosProduct, DivPriceProduct, DivProductPhotos, FieldNumber, NameProduct, PriceProduct, ProductDescricao, ProductSize } from "./style";
-import { getProduct } from "../../client/axios";
+import { 
+  CardProduct, 
+  ContainerProduct, 
+  DivInfosProduct,
+  DivProductPhotos,
+  Error, 
+  FieldNumber,
+  NameProduct,
+  PriceProduct,
+  ProductDescricao,
+  ProductSize 
+} from "./style";
+
+import { addProductCart, getProduct } from "../../client/axios";
 import { ButtonAddCart, DivFlexDirectioRow } from "../../uikit";
-import Button from "../../components/Button";
 
 export default function Product() {
-
+  const navigate = useNavigate();
   const { id }: any = useParams();
 
+  const [ error, setError] = useState('');
   const [product, setProduct] = useState<any>(null);
   const [productPrincipalSize, setProductPrincipalSize] = useState<any>(null)
-  const [chosenSize, setChosenSize] = useState({ quantidade_estoque: 0 });
+  const [chosenSize, setChosenSize] = useState({ nome: '', quantidade_estoque: 0 });
   const [quantity, setQuantity] = useState(0);
 
   console.log(chosenSize)
@@ -36,6 +48,40 @@ export default function Product() {
   useEffect(() => {
     getProductAPI(id)
   }, [])
+
+  const addProductCartAPI = async () => {
+    
+    setError('')
+    
+    if(!chosenSize.nome) {
+      setError('Por favor escolha um tamanho com estoque');
+    }
+
+    if(quantity === 0) {
+      setError('Por favor, escolha a quantidade do produto');
+      return;
+    }
+
+    try {
+      const result = await addProductCart({
+        id,
+        quantidade: quantity,
+        tamanho: chosenSize.nome
+      });
+
+      if(result.data) {
+        navigate(`/cart`);
+      }
+
+    } catch (error: any) {
+      setError(error.message);
+      return;
+    }
+
+    
+  }
+
+
 
   return (
     <>
@@ -81,8 +127,13 @@ export default function Product() {
                 max={chosenSize.quantidade_estoque}
               />
             </DivFlexDirectioRow>
+            {error && (
+                <Error>{error}</Error>
+              )  
+          }
+
             <DivFlexDirectioRow margintop="30px">
-              <ButtonAddCart>ADICIONAR AO CARRINHO</ButtonAddCart>
+              <ButtonAddCart onClick={() => addProductCartAPI()}>ADICIONAR AO CARRINHO</ButtonAddCart>
             </DivFlexDirectioRow>
           </DivInfosProduct>
         </ContainerProduct>

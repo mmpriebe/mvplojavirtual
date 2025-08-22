@@ -69,6 +69,7 @@ export const PriceProduct = styled.p<{ fake?: boolean }>`
 export const ProductDescricao = styled.div<ProductDescricaoProp>`
   margin-top: ${(prop) => prop.margintop ? prop.margintop : '0px'};
   font-family: 'gilroy-medium';
+  font-size: 18px;
 `;
 
 export const ProductSize = styled.div<ProductSizeProp>`
@@ -92,4 +93,17 @@ export const FieldNumber = styled.input`
   border-radius: 10px;
   width: 165px;
   ;
+`;
+
+export const Error = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+  width: 300px;
+  height: 50px;
+  background-color: #ff7875;
+  color: white;
+  font-family: 'gilroy-bold';
 `;
