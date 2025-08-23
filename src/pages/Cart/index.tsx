@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Menu from "../../components/Menu";
@@ -20,12 +21,13 @@ import Button from "../../components/Button";
 
 export default function Cart() {
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate();
 
   useEffect(() => {
     getCartAPI();
   }, [])
-
+  
   const getCartAPI = async () => {
     const result = await getCart();
     console.log(result.data.itens)

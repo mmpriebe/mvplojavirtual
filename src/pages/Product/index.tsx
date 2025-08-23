@@ -32,7 +32,11 @@ export default function Product() {
   const getProductAPI = async (id: string) => {
     const result = await getProduct(id);
 
-    console.log(result)
+    if(!result) {
+      navigate('/');
+      return
+    }
+
     setProduct(result)
     setProductPrincipalSize(
       result?.tamanhos.find((size: any) => size.principal)

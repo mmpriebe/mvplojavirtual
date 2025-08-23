@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+type MenuItemProps = {
+  marginleft?: string;
+  marginright?: string;
+}
+
 type SideProps = {
   side?: "left" | "right";
 }
@@ -18,7 +23,7 @@ export const MenuContainer = styled.div`
 
 export const MenuSide = styled.div<SideProps>`
   display: flex;
-  justify-content: ${props => props.side === "right" ? "flex-end" : "flex-start"};
+  justify-content: ${(props) => props.side === "right" ? "flex-end" : "flex-start"};
   align-items: center;
   padding-left: 80px;
   padding-right: 80px;
@@ -26,10 +31,12 @@ export const MenuSide = styled.div<SideProps>`
   flex: 1;
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled.div<MenuItemProps>`
   display: flex;
+  margin-right: ${(props) => props.marginright ? props.marginright : ''};
   justify-content: center;
   align-items: center;
+  gap: 5px;
   margin: 0 10px;
   cursor: pointer;
   transition: all ease 0.3s;

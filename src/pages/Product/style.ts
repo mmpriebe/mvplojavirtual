@@ -62,8 +62,8 @@ export const DivPriceProduct = styled.div`
 export const PriceProduct = styled.p<{ fake?: boolean }>`
   font-family: 'gilroy-medium', sans-serif;
   font-size: 20px;
-  color: ${props => props.fake ? '#A0A0A0' : '#000000'};
-  text-decoration: ${props => props.fake ? 'line-through' : 'none'};
+  color: ${(props) => props.fake ? '#A0A0A0' : '#000000'};
+  text-decoration: ${(props) => props.fake ? 'line-through' : 'none'};
 `;
 
 export const ProductDescricao = styled.div<ProductDescricaoProp>`

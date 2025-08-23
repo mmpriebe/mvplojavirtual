@@ -1,49 +1,63 @@
 import styled from "styled-components";
 
 type DivFlexDirectioRowProp = {
+  widthProps?: string;
   gap?: string;
   margintop?: string;
   justifycontent?: string;
   fontfamily?: string;
   fontsize?: string;
-}
+};
 
 type DivFlexDirectioColumnProp = {
+  widthProps?: string;
+  heightTotal?: string;
   gap?: string;
   margintop?: string;
   justifycontent?: string;
+  alignitems?: string;
   fontfamily?: string;
   fontsize?: string;
-}
+  paddingProp?: string;
+};
 
 type LabelProps = {
   margintop?: string;
-}
+};
 
 type InputProps = {
-
-}
+  maxwidth?: string;
+  margintop?: string;
+};
 
 export const DivFlexDirectioColumn = styled.div<DivFlexDirectioColumnProp>`
   display: flex;
   flex-direction: column;
-  gap: ${(props) => props.gap ? props.gap : ''};
-  margin-top: ${(props) => props.margintop ? props.margintop : '0px'};
-  justify-content: ${(props) => props.justifycontent ? props.justifycontent : 'flex-start'};
-  font-family: ${(props) => props.fontfamily ? props.fontfamily : 'gilroy-regular'};
-  font-size: ${(props) => props.fontsize ? props.fontsize : '14px'};
+  width: ${(props) => (props.widthProps ? props.widthProps : "")};
+  height: ${(props) => (props.heightTotal ? props.heightTotal : "")};
+  gap: ${(props) => (props.gap ? props.gap : "")};
+  margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
+  justify-content: ${(props) =>
+    props.justifycontent ? props.justifycontent : "flex-start"};
+  align-items: ${(props) => (props.alignitems ? props.alignitems : "")};
+  font-family: ${(props) =>
+    props.fontfamily ? props.fontfamily : "gilroy-regular"};
+  font-size: ${(props) => (props.fontsize ? props.fontsize : "14px")};
+  padding: ${(props) => (props.paddingProp ? props.paddingProp : "0px")};
 `;
 
 export const DivFlexDirectioRow = styled.div<DivFlexDirectioRowProp>`
   display: flex;
   flex-direction: row;
-  gap: ${(props) => props.gap ? props.gap : ''};
-  margin-top: ${(props) => props.margintop ? props.margintop : '0px'};
-  justify-content: ${(props) => props.justifycontent ? props.justifycontent : 'flex-start'};
-  font-family: ${(props) => props.fontfamily ? props.fontfamily : 'gilroy-regular'};
-  font-size: ${(props) => props.fontsize ? props.fontsize : '14px'};
+  width: ${(props) => (props.widthProps ? props.widthProps : "")};
+  gap: ${(props) => (props.gap ? props.gap : "")};
+  margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
+  justify-content: ${(props) =>
+    props.justifycontent ? props.justifycontent : "flex-start"};
+  font-family: ${(props) =>
+    props.fontfamily ? props.fontfamily : "gilroy-regular"};
+  font-size: ${(props) => (props.fontsize ? props.fontsize : "14px")};
 `;
-
 
 export const ButtonAddCart = styled.button`
   padding: 15px 30px;
@@ -52,7 +66,7 @@ export const ButtonAddCart = styled.button`
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  font-family: 'gilroy-bold', sans-serif;
+  font-family: "gilroy-bold", sans-serif;
   font-size: 15px;
 `;
 
@@ -63,7 +77,7 @@ export const TableContainer = styled.div`
 `;
 
 export const Table = styled.table`
- font-family: 'gilroy-bold', sans-serif;
+  font-family: "gilroy-bold", sans-serif;
   width: 100%;
   border-collapse: collapse;
 `;
@@ -93,16 +107,17 @@ export const Tbody = styled.tbody`
 
 export const Label = styled.label<LabelProps>`
   color: #111;
-  font-family: 'gilroy-bold';
+  font-family: "gilroy-bold";
   font-size: 12px;
-  margin-top: ${(props) => props.margintop ? props.margintop : '0px'};
+  margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
 `;
 
 export const TextField = styled.input<InputProps>`
+  margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
   padding: 15px;
-  height: 20px;
+  height: 50px;
   width: 100%;
-  max-width: 200px;
+  max-width: ${(props) => (props.maxwidth ? props.maxwidth : "200px")};
   outline: 0;
   border: 2px solid black;
   border-radius: 10px;
