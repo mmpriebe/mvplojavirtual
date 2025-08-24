@@ -90,7 +90,9 @@ export default function Login() {
 
         <DivFlexDirectioRow gap="200px" margintop="2px" widthProps="100%">
           <DivEsqueciSenha>Esqueci minha senha</DivEsqueciSenha>
-          <DivLinkCadastro>Cadastro</DivLinkCadastro>
+          <DivLinkCadastro>
+            <Link to={'/register'}>Cadastro</Link>
+          </DivLinkCadastro>
         </DivFlexDirectioRow>
         <ButtonLogin onClick={() => loginAPI()}>
           LOGIN

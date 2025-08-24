@@ -5,12 +5,16 @@ type DivFlexDirectioRowProp = {
   gap?: string;
   margintop?: string;
   justifycontent?: string;
+  alignitems?: string;
   fontfamily?: string;
   fontsize?: string;
 };
 
 type DivFlexDirectioColumnProp = {
   widthProps?: string;
+  maxwidth?: string;
+  borderTotal?: string;
+  borderradius?: string;
   heightTotal?: string;
   gap?: string;
   margintop?: string;
@@ -21,19 +25,31 @@ type DivFlexDirectioColumnProp = {
   paddingProp?: string;
 };
 
+type TitleProps = {
+  fontcolor?: string;
+  fontsize?: string;
+  fontfamily?: string
+}
+
 type LabelProps = {
   margintop?: string;
+  cursorpointer?: string;
+  textdecoration?: string;
 };
 
 type InputProps = {
   maxwidth?: string;
   margintop?: string;
+  heighttotal?: string
 };
 
 export const DivFlexDirectioColumn = styled.div<DivFlexDirectioColumnProp>`
   display: flex;
   flex-direction: column;
   width: ${(props) => (props.widthProps ? props.widthProps : "")};
+  max-width: ${(props) => props.maxwidth ? props.maxwidth : ""};
+  border: ${(props) => props.borderTotal ? props.borderTotal : ""};
+  border-radius: ${(props) => props.borderradius ? props.borderradius : ""};
   height: ${(props) => (props.heightTotal ? props.heightTotal : "")};
   gap: ${(props) => (props.gap ? props.gap : "")};
   margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
@@ -49,14 +65,19 @@ export const DivFlexDirectioColumn = styled.div<DivFlexDirectioColumnProp>`
 export const DivFlexDirectioRow = styled.div<DivFlexDirectioRowProp>`
   display: flex;
   flex-direction: row;
+  align-items: ${(props) => (props.alignitems ? props.alignitems : "")};
   width: ${(props) => (props.widthProps ? props.widthProps : "")};
   gap: ${(props) => (props.gap ? props.gap : "")};
   margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
-  justify-content: ${(props) =>
-    props.justifycontent ? props.justifycontent : "flex-start"};
-  font-family: ${(props) =>
-    props.fontfamily ? props.fontfamily : "gilroy-regular"};
+  justify-content: ${(props) => props.justifycontent ? props.justifycontent : "flex-start"};
+  font-family: ${(props) => props.fontfamily ? props.fontfamily : "gilroy-regular"};
   font-size: ${(props) => (props.fontsize ? props.fontsize : "14px")};
+  `;
+
+export const Title = styled.h1<TitleProps>`
+  font-size: ${(props) => (props.fontsize ? props.fontsize : "14px")};
+  font-family: ${(props) => props.fontfamily ? props.fontfamily : "gilroy-regular"};
+  color: ${(props) => props.fontcolor ? props.fontcolor : ""};
 `;
 
 export const ButtonAddCart = styled.button`
@@ -80,6 +101,8 @@ export const Table = styled.table`
   font-family: "gilroy-bold", sans-serif;
   width: 100%;
   border-collapse: collapse;
+  font-size: 20px;
+  margin-top: 50px;
 `;
 
 export const Thead = styled.thead`
@@ -110,12 +133,17 @@ export const Label = styled.label<LabelProps>`
   font-family: "gilroy-bold";
   font-size: 12px;
   margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
+  cursor: ${(props) => props.cursorpointer ? props.cursorpointer : ''};
+  
+  &:hover {
+    text-decoration: ${(props) => props.textdecoration ? props.textdecoration : ''};
+  }
 `;
 
 export const TextField = styled.input<InputProps>`
   margin-top: ${(props) => (props.margintop ? props.margintop : "0px")};
   padding: 15px;
-  height: 50px;
+  height: ${(props) => props.heighttotal ? props.heighttotal : '50px'};
   width: 100%;
   max-width: ${(props) => (props.maxwidth ? props.maxwidth : "200px")};
   outline: 0;

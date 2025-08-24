@@ -233,7 +233,7 @@ export const getCart = async () => {
 export const createPurchase = async () => {
   return {
     data: {
-      link: "https://sandbox.asaas.com",
+      link: "http://localhost:5173/register",
     },
   };
 };
@@ -242,20 +242,70 @@ export const login = async (email: string, password: string) => {
   const correctEmail = "marciano@gmail.com";
   const correctPassword = "123";
 
-  const payload = {
-    id: client.id,
-    name: client.nome,
-    email: client.email,
-  };
   if (email !== correctEmail || password !== correctPassword) {
     throw new Error("Credenciais inválidas");
   }
 
-  const token =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg4YzI5Yzc1LTViYzktNDM3MC1iMTY4LWJlNzVkYjAyNGZiNSIsIm5hbWUiOiJNYXJjaWFubyIsImVtYWlsIjoibWFyY2lhbm9AZ21haWwuY29tIiwiaWF0IjoxNzU1OTgxMTkxLCJleHAiOjE3NTU5ODQ3OTF9.udll4pQSmfBXpYvJENLf1MCT8k0Zym1DvPWQ9pywzuY";
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg4YzI5Yzc1LTViYzktNDM3MC1iMTY4LWJlNzVkYjAyNGZiNSIsIm5hbWUiOiJNYXJjaWFubyIsImVtYWlsIjoibWFyY2lhbm9AZ21haWwuY29tIiwiaWF0IjoxNzU1OTgxMTkxLCJleHAiOjE3NTU5ODQ3OTF9.udll4pQSmfBXpYvJENLf1MCT8k0Zym1DvPWQ9pywzuY";
   return {
     data: {
       token: token,
     },
   };
 };
+
+
+type RegisterPayload = {
+  nome: string,
+  email: string,
+  senha: string,
+  telefone: string,
+  cpf: string
+} 
+
+export const register = async (payload: RegisterPayload) => {
+
+  // TODO requisição para o backend
+
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg4YzI5Yzc1LTViYzktNDM3MC1iMTY4LWJlNzVkYjAyNGZiNSIsIm5hbWUiOiJNYXJjaWFubyIsImVtYWlsIjoibWFyY2lhbm9AZ21haWwuY29tIiwiaWF0IjoxNzU1OTgxMTkxLCJleHAiOjE3NTU5ODQ3OTF9.udll4pQSmfBXpYvJENLf1MCT8k0Zym1DvPWQ9pywzuY";
+  return {
+    data: {
+      token: token,
+    },
+  };
+}
+
+type Invoices = {
+  id: string
+  data: string
+  total: number
+}
+
+const invoices: Invoices[] = [
+  {
+    id: "#ACD554GFA",
+    data: "24/08/2025",
+    total: 250.0,
+  },
+  {
+    id: "#BGH772KLP",
+    data: "23/08/2025",
+    total: 489.9,
+  },
+  {
+    id: "#XQW991ZTE",
+    data: "22/08/2025",
+    total: 129.5,
+  },
+  {
+    id: "#LMN438RSD",
+    data: "20/08/2025",
+    total: 980.0,
+  },
+]
+
+
+export const getInvoices =  async () => {
+  return invoices
+
+}

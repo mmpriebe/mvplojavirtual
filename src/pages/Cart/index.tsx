@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Menu from "../../components/Menu";
 import { 
   CheckBox, 
@@ -14,10 +14,11 @@ import {
   Th, 
   Thead, 
   Tr } from "../../uikit";
-import { CartContainer } from "./style";
+import { CartContainer, TitleCart } from "./style";
 import { FiSearch } from "react-icons/fi";
 import { calculateShipping, createPurchase, getCart } from "../../client/axios";
 import Button from "../../components/Button";
+import { FaCartArrowDown } from "react-icons/fa6";
 
 export default function Cart() {
 
@@ -36,6 +37,9 @@ export default function Cart() {
 
   const createPurchaseAPI = async () => {
     const result = await createPurchase();
+
+    
+
     if(result.data.link) {
       window.location.href = result.data.link;
     }
@@ -98,6 +102,7 @@ export default function Cart() {
     <>
       <Menu />
       <CartContainer>
+        <TitleCart>SEU CARRINHO <FaCartArrowDown size={25}/></TitleCart>
         <Table>
           <Thead>
             <Tr>
@@ -120,7 +125,7 @@ export default function Cart() {
         <Label margintop="20px">CEP:</Label>
 
         <DivFlexDirectioRow gap="5px">
-          <TextField onChange={(e) => setCep(e.target.value)}value={cep}/>
+          <TextField heighttotal={'35px'} onChange={(e) => setCep(e.target.value)}value={cep}/>
           <LightButton onClick={() => calculateShippingAPI()}><FiSearch size={20} /></LightButton>
         </DivFlexDirectioRow>
 
@@ -142,10 +147,15 @@ export default function Cart() {
           Valor Total: {getTotalValue()}
         </DivFlexDirectioRow>
         
-        <DivFlexDirectioRow justifycontent="flex-end" margintop="10px">
+        <DivFlexDirectioRow justifycontent="space-between" alignitems="center" gap="10px" margintop="10px">
+          <Link to={'/register?origin=cart'}>
+            <Label>CADASTRAR-SE</Label>
+          </Link>
           <Button onClick={() => createPurchaseAPI()}>FINALIZAR COMPRA</Button>
         </DivFlexDirectioRow>
 
+        <DivFlexDirectioRow justifycontent="flex-start" margintop="10px">
+        </DivFlexDirectioRow>
       </CartContainer>
     </>
   );

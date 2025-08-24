@@ -6,3 +6,12 @@ export const CartContainer = styled.div`
   width: 100%;
   padding: 50px 80px 10px 80px;
 `;
+
+export const TitleCart = styled.h1`
+  display: flex;
+  align-items: center;
+  font-family: 'gilroy-bold';
+  font-size: 20px;
+  color: black;
+  margin-top: 20px;
+`;

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Menu from "../../components/Menu";
 import { 
   CardProduct, 
   ContainerProduct, 
   DivInfosProduct,
   DivProductPhotos,
+  DivVoltarPraHome,
   Error, 
   FieldNumber,
   NameProduct,
@@ -16,6 +17,7 @@ import {
 
 import { addProductCart, getProduct } from "../../client/axios";
 import { ButtonAddCart, DivFlexDirectioRow } from "../../uikit";
+import { FaArrowLeft, } from "react-icons/fa6";
 
 export default function Product() {
   const navigate = useNavigate();
@@ -30,17 +32,21 @@ export default function Product() {
   console.log(chosenSize)
 
   const getProductAPI = async (id: string) => {
+
+    try {
     const result = await getProduct(id);
 
     if(!result) {
-      navigate('/');
-      return
+      throw 'Produto não encontrado!';
     }
 
     setProduct(result)
     setProductPrincipalSize(
       result?.tamanhos.find((size: any) => size.principal)
     )
+    } catch (error) {
+      navigate('/')
+    }
   }
 
   const checkSize = (size: any) => {
@@ -90,6 +96,9 @@ export default function Product() {
   return (
     <>
       <Menu />
+      <Link to={'/'}>
+        <DivVoltarPraHome> <FaArrowLeft/> VOLTAR PARA HOME</DivVoltarPraHome>
+      </Link>
       {product &&
         <ContainerProduct>
           <DivProductPhotos>

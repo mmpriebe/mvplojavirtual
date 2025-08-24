@@ -15,7 +15,18 @@ type ProductSizeProp = {
 
 export const ContainerProduct = styled.div`
   display: flex;
-  padding: 60px 80px;
+  padding: 30px 80px 10px 90px;
+`;
+
+export const DivVoltarPraHome = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 50px;
+  padding: 30px 80px 0px 90px;
+  font-family: 'gilroy-bold';
+  
+  cursor: pointer;
 `;
 
 export const DivProductPhotos = styled.div`
@@ -31,18 +42,15 @@ export const DivInfosProduct = styled.div`
 `;
 
 export const CardProduct = styled.div<CardProductProps>`
-  height: 500px;
-  width: 250px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: end;
-  height: 450px;
-  width: 250px;
+  height: 550px;
   border-radius: 25px;
   padding-bottom: 10px;
   background-size: cover;
   background-position: center;
-  cursor: pointer;
   background-image: url(${(props: CardProductProps) => props.backgroundimage});
 `;
 
