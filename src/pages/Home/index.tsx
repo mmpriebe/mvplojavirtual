@@ -17,7 +17,6 @@ export default function Home() {
     setProducts(productsAPI);
   }
 
-  console.log(products);
 
   return (
     <>

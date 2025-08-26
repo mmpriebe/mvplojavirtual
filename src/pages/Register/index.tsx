@@ -47,12 +47,12 @@ export default function Regsiter() {
         throw new Error('Ocorreu um erro no cadastro, por favor, tente novamente ou contate o suporte!');
       }
       const token = result.data.token;
-      const decodedToken: { id: string, name: string } | null = decodeToken(token);
+      const decodedToken: { id: string, nome: string } | null = decodeToken(token);
 
       
       if(decodedToken) {
         Cookies.set('token', token);
-        Cookies.set('name', decodedToken.name)
+        Cookies.set('name', decodedToken.nome)
       }
 
       if(origin && origin === 'cart') {

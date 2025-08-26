@@ -54,8 +54,7 @@ export const ErrorLogin = styled.div`
   align-items: center;
   font-size: 15px;
   margin-top: 10px;
-  padding-left: 10px;
-  height: 50px;
+  padding: 10px 0px 10px 10px;
   width: 430px;
   border: 2px solid red;
   background-color: coral;

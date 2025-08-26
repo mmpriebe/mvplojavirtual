@@ -22,7 +22,7 @@ import { useNavigate } from "react-router-dom";
 
 type DecodedToken = {
   id: string;
-  name: string;
+  nome: string;
   email: string;
 };
 
@@ -43,11 +43,11 @@ export default function Login() {
         const token = resultLogin.data.token;
         const dataToken: DecodedToken | null = decodeToken(token);
         Cookies.set("token", token, { expires: 7 });
-        Cookies.set("name", dataToken?.name ? dataToken.name : "");
+        Cookies.set("name", dataToken?.nome ? dataToken.nome : "");
         navigate("/");
       }
       
-    } catch (err: unknown) {
+    } catch (err: any) {
       setError(err instanceof Error ? err.message : "An error occurred");
     }
   };

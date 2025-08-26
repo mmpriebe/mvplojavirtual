@@ -1,0 +1,7 @@
+
+
+####
+GET http://localhost:3000/produtos
+
+###
+GET http://localhost:3000/produtos/017c26d1-d8d2-4c86-8bd1-afbecc74c0d8

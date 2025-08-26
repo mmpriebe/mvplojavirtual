@@ -16,7 +16,7 @@ import {
 } from "./style";
 
 import { addProductCart, getProduct } from "../../client/axios";
-import { ButtonAddCart, DivFlexDirectioRow } from "../../uikit";
+import { ButtonAddCart, DivFlexDirectioColumn, DivFlexDirectioRow } from "../../uikit";
 import { FaArrowLeft, } from "react-icons/fa6";
 
 export default function Product() {
@@ -29,7 +29,6 @@ export default function Product() {
   const [chosenSize, setChosenSize] = useState({ nome: '', quantidade_estoque: 0 });
   const [quantity, setQuantity] = useState(0);
 
-  console.log(chosenSize)
 
   const getProductAPI = async (id: string) => {
 
@@ -117,7 +116,7 @@ export default function Product() {
 
             </DivFlexDirectioRow>
             <ProductDescricao margintop={'40px'}>
-              {product.descricao}
+              {product.descricacao}
             </ProductDescricao>
             <DivFlexDirectioRow gap={'10px'} margintop={'10px'}>
               {product.tamanhos && product.tamanhos.map((size: any) => {
@@ -152,7 +151,11 @@ export default function Product() {
         </ContainerProduct>
       }
       {!product &&
-        <>Carregando produto...</>
+        <>
+          <DivFlexDirectioColumn>
+            Carregando produto...
+          </DivFlexDirectioColumn>
+        </>
       }
     </>
   )
